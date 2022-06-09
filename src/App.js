@@ -3,6 +3,7 @@ import { Routes, Route, useParams } from "react-router-dom";
 import { generatePalette } from "./colorHelper";
 import SeedColors from "./SeedColors";
 import Palette from "./Palette";
+import PaletteList from "./PaletteList";
 
 class App extends Component {
   render() {
@@ -18,7 +19,7 @@ class App extends Component {
     };
     return (
       <Routes>
-        <Route exact path="/" element={<h1>Palette list goes here </h1>} />
+        <Route exact path="/" element={<PaletteList palettes={SeedColors} />} />
         <Route exact path="/palette/:id" element={<PaletteWrapper />} />
       </Routes>
     );
