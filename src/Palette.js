@@ -17,10 +17,14 @@ class Palette extends Component {
     this.setState({ colorFormat: value });
   }
   render() {
-    const { colors } = this.props.palette;
+    const { colors, paletteName, emoji } = this.props.palette;
     const { level, colorFormat } = this.state;
     const colorBoxes = colors[level].map((color) => (
-      <ColorBox background={color[colorFormat]} name={color.name} />
+      <ColorBox
+        background={color[colorFormat]}
+        name={color.name}
+        key={color.id}
+      />
     ));
 
     // const colorBoxes = this.props.palette.colors;
@@ -34,6 +38,10 @@ class Palette extends Component {
         />
         <div className="Palette-colors">{colorBoxes}</div>
         {/* footer here eventually */}
+        <footer className="Palette-footer">
+          {paletteName}
+          <span className="emoji">{emoji}</span>
+        </footer>
       </div>
     );
   }
