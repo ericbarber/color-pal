@@ -1,20 +1,53 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { withStyles } from "@material-ui/styles";
 import MiniPalette from "./MiniPalette";
+
+const styles = {
+  root: {
+    background: "blue",
+    height: "100vh",
+    display: "flex",
+    alignItems: "flex-start",
+    justifyContent: "center",
+  },
+  container: {
+    width: "50%",
+    display: "flex",
+    alignItems: "flex-start",
+    flexDirection: "column",
+    flexWrap: "wrap",
+  },
+  nav: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-between",
+  },
+  palettes: {
+    boxSizing: "border-box",
+    width: "100%",
+    display: "grid",
+    gridTemplateColumns: "repeat(3,30%)",
+  },
+};
 
 class PaletteList extends Component {
   render() {
-    const { palettes } = this.props;
+    const { palettes, classes } = this.props;
     return (
-      <div>
-        <MiniPalette />
-        <h1>PALETTE LIST HERE</h1>
-        {palettes.map((palette) => (
-          <MiniPalette {...palette} />
-        ))}
+      <div className={classes.root}>
+        <div className={classes.container}>
+          <nav className={classes.nav}></nav>
+          <h1>PALETTE SET</h1>{" "}
+          <div className={classes.palettes}>
+            {palettes.map((palette) => (
+              <MiniPalette {...palette} />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default PaletteList;
+export default withStyles(styles)(PaletteList);
