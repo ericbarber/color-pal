@@ -17,17 +17,16 @@ class Palette extends Component {
     this.setState({ colorFormat: value });
   }
   render() {
-    const { colors, paletteName, emoji } = this.props.palette;
+    const { colors, paletteName, emoji, id } = this.props.palette;
     const { level, colorFormat } = this.state;
     const colorBoxes = colors[level].map((color) => (
       <ColorBox
         background={color[colorFormat]}
         name={color.name}
         key={color.id}
+        moreUrl={`/palette/${id}/${color.id}`}
       />
     ));
-
-    // const colorBoxes = this.props.palette.colors;
 
     return (
       <div className="Palette">
@@ -37,7 +36,6 @@ class Palette extends Component {
           handleChange={this.changeColorFormat}
         />
         <div className="Palette-colors">{colorBoxes}</div>
-        {/* footer here eventually */}
         <footer className="Palette-footer">
           {paletteName}
           <span className="emoji">{emoji}</span>
