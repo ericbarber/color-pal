@@ -15,18 +15,33 @@ class App extends Component {
         });
       };
       const params = useParams();
-      console.log("PARAMS", params);
       return <Palette palette={generatePalette(findPalette(params.id))} />;
     };
+
+    const SingleColorPaletteWrapper = (props) => {
+      let findPalette = (id) => {
+        return SeedColors.find(function (palette) {
+          return palette.id === id;
+        });
+      };
+      const params = useParams();
+      return (
+        <SingleColorPalette
+          colorId={params.colorId}
+          palette={generatePalette(findPalette(params.paletteId))}
+        />
+      );
+    };
+
     return (
       <Routes>
-        <Route exact path="/" element={<PaletteList palettes={SeedColors} />} />
-        <Route exact path="/palette/:id" element={<PaletteWrapper />} />
         <Route
           exact
           path="/palette/:paletteId/:colorId"
-          element={<SingleColorPalette />}
+          element={<SingleColorPaletteWrapper />}
         />
+        <Route exact path="/" element={<PaletteList palettes={SeedColors} />} />
+        <Route exact path="/palette/:id" element={<PaletteWrapper />} />
       </Routes>
     );
   }
