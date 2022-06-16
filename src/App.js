@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
-import { generatePalette } from "./colorHelper";
-import SeedColors from "./SeedColors";
+import { generatePalette } from "./colorHelpers";
+import SeedColors from "./seedColors";
 import Palette from "./Palette";
 import PaletteList from "./PaletteList";
 import SingleColorPalette from "./SingleColorPalette";
