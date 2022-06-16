@@ -11,7 +11,7 @@
   height: 50%;
 }
 
-.ColorBox.go-back {
+.go-back {
   background-color: black;
   position: relative;
 }
@@ -56,15 +56,12 @@
   text-transform: uppercase;
   font-size: 12px;
 }
-
 .light-text {
-    color: white;
+  color: white;
 }
-
 .ColorBox .dark-text {
-    color: black;
+  color: rgba(0, 0, 0, 0.5);
 }
-
 .see-more {
   background: rgba(255, 255, 255, 0.3);
   position: absolute;

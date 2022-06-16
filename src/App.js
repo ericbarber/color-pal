@@ -1,48 +1,51 @@
 import React, { Component } from "react";
-import { Routes, Route, useParams } from "react-router-dom";
-import { generatePalette } from "./colorHelper";
-import SeedColors from "./SeedColors";
+import { Route, Switch } from "react-router-dom";
 import Palette from "./Palette";
 import PaletteList from "./PaletteList";
 import SingleColorPalette from "./SingleColorPalette";
+import seedColors from "./seedColors";
+import { generatePalette } from "./colorHelpers";
 
 class App extends Component {
+  findPalette(id) {
+    return seedColors.find(function(palette) {
+      return palette.id === id;
+    });
+  }
   render() {
-    const PaletteWrapper = (props) => {
-      let findPalette = (id) => {
-        return SeedColors.find(function (palette) {
-          return palette.id === id;
-        });
-      };
-      const params = useParams();
-      return <Palette palette={generatePalette(findPalette(params.id))} />;
-    };
-
-    const SingleColorPaletteWrapper = (props) => {
-      let findPalette = (id) => {
-        return SeedColors.find(function (palette) {
-          return palette.id === id;
-        });
-      };
-      const params = useParams();
-      return (
-        <SingleColorPalette
-          colorId={params.colorId}
-          palette={generatePalette(findPalette(params.paletteId))}
-        />
-      );
-    };
-
     return (
-      <Routes>
+      <Switch>
         <Route
           exact
-          path="/palette/:paletteId/:colorId"
-          element={<SingleColorPaletteWrapper />}
+          path='/palette/:paletteId/:colorId'
+          render={routeProps => (
+            <SingleColorPalette
+              colorId={routeProps.match.params.colorId}
+              palette={generatePalette(
+                this.findPalette(routeProps.match.params.paletteId)
+              )}
+            />
+          )}
         />
-        <Route exact path="/" element={<PaletteList palettes={SeedColors} />} />
-        <Route exact path="/palette/:id" element={<PaletteWrapper />} />
-      </Routes>
+        <Route
+          exact
+          path='/'
+          render={routeProps => (
+            <PaletteList palettes={seedColors} {...routeProps} />
+          )}
+        />
+        <Route
+          exact
+          path='/palette/:id'
+          render={routeProps => (
+            <Palette
+              palette={generatePalette(
+                this.findPalette(routeProps.match.params.id)
+              )}
+            />
+          )}
+        />
+      </Switch>
     );
   }
 }
