@@ -19,7 +19,7 @@ class SingleColorPalette extends Component {
 
     for (let key in allColors) {
       shades = shades.concat(
-        allColors[key].filter(color => color.id === colorToFilterBy)
+        allColors[key].filter((color) => color.id === colorToFilterBy)
       );
     }
     return shades.slice(1);
@@ -31,7 +31,7 @@ class SingleColorPalette extends Component {
     const { format } = this.state;
     const { paletteName, emoji, id } = this.props.palette;
     const { classes } = this.props;
-    const colorBoxes = this._shades.map(color => (
+    const colorBoxes = this._shades.map((color) => (
       <ColorBox
         key={color.name}
         name={color.name}

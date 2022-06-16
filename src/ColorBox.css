@@ -59,6 +59,12 @@
 /* .light-text {
   color: white;
 }
+<<<<<<< HEAD
+=======
+.light-text {
+  color: white;
+}
+>>>>>>> main
 .ColorBox .dark-text {
   color: rgba(0, 0, 0, 0.5);
 }
