@@ -9,7 +9,7 @@ const styles = {
   },
   goBack: {
     width: "20%",
-    height: "50%",
+    height: "25%",
     margin: "0 auto",
     display: "inline-block",
     position: "relative",
