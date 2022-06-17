@@ -12,7 +12,26 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
-const drawerWidth = 240;
+import Button from "@mui/material/Button";
+// import Stack from "@mui/material/Stack";
+
+// export default function ContainedButtons() {
+//   return (
+//     <Stack direction="row" spacing={2}>
+//       <Button variant="contained">Contained</Button>
+//       <Button variant="contained" disabled>
+//         Disabled
+//       </Button>
+//       <Button variant="contained" href="#contained-buttons">
+//         Link
+//       </Button>
+//     </Stack>
+//   );
+// }
+
+import { ChromePicker } from "react-color";
+
+const drawerWidth = 400;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
@@ -112,6 +131,23 @@ export default function NewPaletteForm() {
             )}
           </IconButton>
         </DrawerHeader>
+        <Typography variant="h4">Design your palette</Typography>
+        <div>
+          <Button variant="contained" color="secondary">
+            Clear Palette
+          </Button>
+          <Button variant="contained" color="primary">
+            Radom Color
+          </Button>
+        </div>
+        <ChromePicker
+          width={400}
+          color="blue"
+          onChangeComplete={(newColor) => console.log(newColor)}
+        />
+        <Button variant="contained" color="primary">
+          Add Color
+        </Button>
         <Divider />
       </Drawer>
       <Main open={open}>
